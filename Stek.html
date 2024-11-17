@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASPirin</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="Script.js"></script>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <div class="logo">ASPirin</div>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a>Lista</a>
+                </li>
+                <li>
+                    <a class="active">Stek</a>
+                </li>
+                <li>
+                    <a href="Red">Red</a>
+                </li>
+                <li>
+                    <a>Binarno stablo</a>
+                </li>
+                <li>
+                    <a>M-arno stablo</a>
+                </li>
+                <li>
+                    <a>Hesiranje</a>
+                </li>
+                <li>
+                    <a>Sortiranje</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="header" id="header">
+        <h1>STEK</h1>
+    </div>
+
+    <div class="window" id="window">
+        <div class="article">
+            <p>Stek je linearna struktura podataka koja radi po principu <b>FIFO</b> - <b>F</b>irst <b>I</b>n <b>F</b>irst <b>O</b>ut</p>
+            <p>Može da se implementira sekvencijalno - pomoću niza - ili ulančano - pomoću ulančane liste.</p>
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                        <pre>
+#include &ltstdio.h&gt
+#include &ltstdlib.h&gt
+
+typedef struct Stack {
+    int size;
+    int top; //Pokazuje na poslednju zauzetu adresu
+    int *array;
+} Stack;
+
+Stack* CREATE_STACK(int size) {
+    Stack *stack = (Stack*)malloc(sizeof(Stack));
+    if (stack == NULL) {
+        printf("GRESKA: Neuspesna alokacija memorije!");
+        exit(0);
+    }
+
+    stack->size = size;
+    stack->top = -1;
+    stack->array = (int*)malloc(size * sizeof(int));
+    if (stack->array == NULL) {
+        printf("GRESKA: Neuspesna alokacija memorije!");
+        exit(0);
+    }
+
+    return stack;
+}
+
+int STACK_EMPTY(Stack *stack) {
+    return stack->top == -1;
+}
+
+int STACK_FULL(Stack *stack) {
+    return stack->top == stack->size;
+}
+
+void STACK_PUSH(Stack *stack, int value) {
+    if (stack == NULL) {
+        printf("GRESKA: Vrednost pokazivaca je NULL!");
+        exit(0);
+    }
+
+    if (STACK_FULL(stack)) {
+        printf("GRESKA: Stek je pun!");
+        exit(0);
+    }
+
+    stack->top++;
+    stack->array[stack->top] = value;
+}
+
+int STACK_TOP(Stack *stack) {
+    if (STACK_EMPTY(stack)) {
+        printf("GRESKA: Stek je prazan!");
+        exit(0);
+    }
+
+    return stack->array[stack->top];
+}
+
+void STACK_POP(Stack *stack) {
+    if (STACK_EMPTY(stack)) {
+        printf("GRESKA: Stek je prazan!");
+        exit(0);
+    }
+
+    stack->top--;
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                        <pre>
+#include &ltiostream&gt
+
+using namespace std;
+
+template &lttypename T&gt
+class Stack {
+public:
+    Stack(int size): size(size), topp(-1) {
+        array = new T[size];
+    }
+
+    Stack(Stack &stack) {
+        copy(stack);
+    }
+
+    Stack(Stack &&stack) {
+        move(stack);
+    }
+
+    ~Stack() {
+        destroy();
+    };
+
+    Stack& operator=(Stack const &stack) {
+        if (this != &stack) {
+            destroy();
+            copy(stack);
+        }
+        return *this;
+    }
+
+    bool isEmpty() {
+        return topp == -1;
+    }
+
+    bool isFull() {
+        return topp == size-1;
+    }
+
+    void push(T t) {
+        if (isFull()) {
+            cout << "GRESKA: Stek je pun!" << endl;
+            exit(0);
+        }
+
+        topp++;
+        array[topp] = t;
+    }
+
+    T top() {
+        if (isEmpty()) {
+            cout << "GRESKA: Stek je prazan!" << endl;
+            exit(0);
+        }
+
+        return array[topp];
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "GRESKA: Stek je prazan!" << endl;
+            exit(0);
+        }
+
+        topp--;
+    }
+
+protected:
+    void copy(Stack &stack) {
+        size = stack.size;
+        topp = stack.topp;
+
+        array = new T[size];
+        if (topp > -1) memcpy(array, stack.array, (topp+1)*sizeof(T));
+    }
+    void move(Stack &&stack) {
+        size = stack.size;
+        topp = stack.topp;
+
+        array = stack.array;
+        stack.array = nullptr;
+    }
+    void destroy() {
+        delete array;
+    }
+private:
+    int size;
+    int topp;
+    T *array;
+};</pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+    </div>
+</body>
+</html>
