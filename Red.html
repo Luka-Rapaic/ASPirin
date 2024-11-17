@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASPirin</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="Script.js"></script>
+</head>
+<body>
+<div class="navbar" id="navbar">
+    <div class="logo">ASPirin</div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="Lista.html">Lista</a>
+            </li>
+            <li>
+                <a href="Stek.html">Stek</a>
+            </li>
+            <li>
+                <a href="Red.html" class="active">Red</a>
+            </li>
+            <li>
+                <a>Binarno stablo</a>
+            </li>
+            <li>
+                <a>M-arno stablo</a>
+            </li>
+            <li>
+                <a>Hesiranje</a>
+            </li>
+            <li>
+                <a>Sortiranje</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="header" id="header">
+    <h1>STEK</h1>
+</div>
+
+<div class="window" id="window">
+    <div class="article">
+        <div class="codeContainer">
+            <button class="active" onclick="focusC(this)">C</button>
+            <button onclick="focusCPP(this)">C++</button>
+            <button>Python</button>
+            <button onclick="toggleExpand(this)">Expand</button>
+            <div class="code">
+                <div class="codeContent visible">
+                        <pre>
+
+                        </pre>
+                </div> <!--codeContent-->
+                <div class="codeContent">
+                        <pre>
+
+                        </pre>
+                </div> <!-- codeContent -->
+            </div> <!-- code -->
+        </div> <!-- codeContainer -->
+    </div>
+</div>
+</body>
+</html>
