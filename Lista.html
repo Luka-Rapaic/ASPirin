@@ -49,8 +49,7 @@
             <button onclick="toggleExpand(this)">Expand</button>
             <div class="code">
                 <div class="codeContent visible">
-                    <pre>
-                        #include &ltstdio.h&gt
+                    <pre>#include &ltstdio.h&gt
 #include &ltstdlib.h&gt
 
 typedef struct Node {
@@ -179,8 +178,177 @@ int list_remove_from_index(List *list, int index) {
                         </pre>
                 </div> <!--codeContent-->
                 <div class="codeContent">
-                        <pre>
+                        <pre>class Data;
 
+class List {
+public:
+    void insertAtStart(Data*);
+    void insertAtEnd(Data*);
+    void insertAtIndex(Data*, int);
+
+    Data* removeFromStart();
+    Data* removeFromEnd();
+    Data* removeFromIndex(int);
+
+    Data* getFromStart();
+    Data* getFromEnd();
+    Data* getFromIndex(int);
+
+    bool isEmpty();
+
+    ~List();
+private:
+    struct Node {
+        Data *data;
+        Node *next;
+
+        Node(Data *data): data(data), next(nullptr) {}
+    };
+
+    Node *head = nullptr;
+    Node *tail = nullptr;
+};
+
+void List::insertAtStart(Data *data) {
+    Node *newNode = new Node(data);
+
+    if (!head) {
+        head = tail = newNode;
+    } else {
+        newNode->next = head;
+        head = newNode;
+    }
+}
+
+void List::insertAtEnd(Data *data) {
+    Node *newNode = new Node(data);
+
+    if (!tail) {
+        head = tail = newNode;
+    } else {
+        tail->next = newNode;
+    }
+}
+
+void List::insertAtIndex(Data *data, int index) {
+    if (index < 0) return;
+
+    Node *newNode = new Node(data);
+
+    Node *curr = head, *prev = nullptr;
+    int i = 0;
+    while (i < index and curr != nullptr) {
+        prev = curr;
+        curr = curr->next;
+        i++;
+    }
+
+    if (prev == nullptr) {
+        newNode->next = head;
+        head = newNode;
+
+        if (tail == nullptr) tail = head;
+    } else {
+        prev->next = newNode;
+        newNode->next = curr;
+
+        if (tail == prev) tail = newNode;
+    }
+}
+
+Data *List::removeFromStart() {
+    if (head == nullptr) return nullptr;
+
+    Node *node = head;
+    head = head->next;
+    if (head == nullptr) tail = nullptr;
+
+    Data *data = node->data;
+    delete node;
+    return data;
+}
+
+Data *List::removeFromEnd() {
+    if (head == nullptr) return nullptr;
+
+    Node *curr = head, *prev = nullptr;
+    while (curr != tail) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (prev == nullptr) {
+        head = tail = nullptr;
+    }
+    else {
+        prev->next = nullptr;
+        tail = prev;
+    }
+
+    Data *data = curr->data;
+    delete curr;
+    return data;
+}
+
+Data *List::removeFromIndex(int index) {
+    if (head == nullptr) return nullptr;
+
+    Node *curr = head, *prev = nullptr;
+    int i = 0;
+    while (i < index and curr != nullptr) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (curr == nullptr) return nullptr;
+
+    if (prev == nullptr) head = curr->next;
+    else prev->next = curr->next;
+
+    if (tail == curr) {
+        tail = prev;
+    }
+
+    Data* data = curr->data;
+    delete curr;
+    return data;
+}
+
+Data *List::getFromStart() {
+    if (head == nullptr) return nullptr;
+    return head->data;
+}
+
+Data *List::getFromEnd() {
+    if (tail == nullptr) return nullptr;
+    return tail->data;
+}
+
+Data *List::getFromIndex(int index) {
+    if (head == nullptr) return nullptr;
+
+    Node *curr = head;
+    int i = 0;
+    while (i < index and curr != nullptr) {
+        curr = curr->next;
+    }
+
+    if (curr == nullptr) return nullptr;
+    return curr->data;
+}
+
+bool List::isEmpty() {
+    return head == nullptr;
+}
+
+List::~List() {
+    Node *node = head;
+    while (node != nullptr) {
+        Node *tmp = node;
+        node = node->next;
+        delete tmp;
+    }
+}
                         </pre>
                 </div> <!-- codeContent -->
             </div> <!-- code -->
