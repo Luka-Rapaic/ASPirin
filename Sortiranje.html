@@ -47,7 +47,7 @@
             <h2>Bubble sort</h2>
 
             <p>Bubble sort prolazi kroz niz i menja pozicije susednih elemenata ukoliko oni nisu sortirani.</p>
-            <p>Ovaj postupak se ponavlja sve dok čitav niz ne bude sortiran, odnosno, izvršavanje se prekida ukoliko u jednom prolazu nije došlo ni do jedne izmene</p>
+            <p>Ovaj postupak se ponavlja sve dok čitav niz ne bude sortiran, odnosno, izvršavanje se prekida ukoliko u jednom prolazu nije došlo ni do jedne izmene.</p>
 
             <table>
                 <tr>
@@ -239,6 +239,71 @@ void insertion_sort(int *array, int n) {
             array[j+1] = array[j];
         }
         array[j+1] = key;
+    }
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                            <pre>
+
+                            </pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+
+        <div class="section">
+
+            <h2>Merge sort</h2>
+
+            <p>Merge sort rekurzivno deli niz po sredini na dva jednaka dela, sve dok ti delovi ne postanu jedinične veličine.</p>
+            <p>Merge sort zatim prolazi kroz sortirane polovine i spaja ih u novi sortirani niz.</p>
+            <p>Spajanje se vrši poređenjem tekućih elemenata sortiranih polovina. Manji tekući element se smešta na tekuću poziciju novog niza,
+                a zatim se inkrementira brojač niza iz kog manji element potiče kao i brojač novog niza.</p>
+            <p>Preostali elementi jednog od sortiranih nizova se na kraju kopiraju na kraj novog niza.</p>
+
+            <table>
+                <tr>
+                    <th>Vremenska složenost:</th>
+                    <td>n*log(n)</td>
+                </tr>
+                <tr>
+                    <th>Prostorna složenost:</th>
+                    <td>n</td>
+                </tr>
+            </table>
+
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                            <pre>
+void merge_sort(int *array, int low, int high) {
+    if (low < high) {
+        int mid = (low + high) / 2;
+
+        merge_sort(array, low, mid);
+        merge_sort(array, mid+1, high);
+
+        int n1 = mid - low + 1;
+        int n2 = high - mid;
+
+        int tmp1[n1];
+        for (int i = 0; i < n1; i++) tmp1[i] = array[i+low];
+
+        int tmp2[n2];
+        for (int i = 0; i < n2; i++) tmp2[i] = array[i+mid+1];
+
+        int i = 0, j = 0;
+        while (i < n1 && j < n2) {
+            if (tmp1[i] <= tmp2[j]) array[low++] = tmp1[i++];
+            else array[low++] = tmp2[j++];
+        }
+
+        while (i < n1) array[low++] = tmp1[i++];
+        while (j < n2) array[low++] = tmp2[j++];
     }
 }</pre>
                     </div> <!--codeContent-->
