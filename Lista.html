@@ -2,9 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista</title>
+    <title>ASPirin</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="Script.js"></script>
 </head>
 <body>
+<div class="navbar" id="navbar">
+    <div class="logo">ASPirin</div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="Lista.html" class="active">Lista</a>
+            </li>
+            <li>
+                <a href="Stek.html">Stek</a>
+            </li>
+            <li>
+                <a href="Red.html">Red</a>
+            </li>
+            <li>
+                <a>Binarno stablo</a>
+            </li>
+            <li>
+                <a>M-arno stablo</a>
+            </li>
+            <li>
+                <a>Hesiranje</a>
+            </li>
+            <li>
+                <a>Sortiranje</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
+<div class="header" id="header">
+    <h1>LISTA</h1>
+</div>
+
+<div class="window" id="window">
+    <div class="article">
+        <div class="codeContainer">
+            <button class="active" onclick="focusC(this)">C</button>
+            <button onclick="focusCPP(this)">C++</button>
+            <button>Python</button>
+            <button onclick="toggleExpand(this)">Expand</button>
+            <div class="code">
+                <div class="codeContent visible">
+                    <pre>
+                        #include &ltstdio.h&gt
+#include &ltstdlib.h&gt
+
+typedef struct Node {
+    int value;
+    struct Node* next;
+} Node;
+
+typedef struct List {
+    Node* head;
+    Node* tail;
+    int length;
+} List;
+
+Node* node_create(int value) {
+    Node* newNode = malloc(sizeof(Node));
+    newNode->value = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+List* list_create() {
+    List* newList = malloc(sizeof(List));
+
+    newList->head = NULL;
+    newList->tail = NULL;
+    newList->length = 0;
+
+    return newList;
+}
+
+int list_insert_at_end(List *list, int value) {
+    Node* newNode = node_create(value);
+    if (newNode == NULL) return -1;
+
+    if (list->tail) {
+        list->tail->next = newNode;
+    } else {
+        list->tail = list->head = newNode;
+    }
+
+    list->length++;
+    return 0;
+}
+
+int list_insert_at_start(List *list, int value) {
+    Node *newNode = node_create(value);
+    if (newNode == NULL) return -1;
+
+    if (list->head) {
+        newNode->next = list->head;
+        list->head = newNode;
+    } else {
+        list->head = list->tail = newNode;
+    }
+
+    list->length++;
+    return 0;
+}
+
+int list_insert_at_index(List *list, int value, int index) {
+    if (index == 0) return list_insert_at_start(list, value);
+    if (index == list->length) return list_insert_at_end(list, value);
+    if (index > list->length) return -2;
+
+    Node *newNode = node_create(value);
+    if (newNode == NULL) return -1;
+
+    Node *currNode = list->head;
+    for (int i = 0; i < index - 1; i++) {
+        currNode = currNode->next;
+    }
+
+    newNode->next = currNode->next;
+    currNode->next = newNode;
+
+    list->length++;
+    return 0;
+}
+
+int list_remove_from_end(List *list) {
+    if (!list->head) return -2;
+
+    Node *currNode = list->head, *prevNode = NULL;
+    while (currNode != list->tail) {
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+
+    if (prevNode) {
+        list->tail = prevNode;
+        prevNode->next = NULL;
+    } else {
+        list->tail = list->head = NULL;
+    }
+
+    list->length--;
+    return currNode->value;
+}
+
+int list_remove_from_start(List *list) {
+    if (!list->head) return -2;
+
+    Node *node = list->head;
+    list->head = node->next;
+    if (!list->head) list->tail = NULL;
+
+    list->length--;
+    return node->value;
+}
+
+int list_remove_from_index(List *list, int index) {
+    if (index == 0) return list_remove_from_start(list);
+    if (index == list->length-1) return list_remove_from_end(list);
+    if (index >= list->length) return -2;
+
+    Node *currNode = list->head, *prevNode = NULL;
+    for (int i = 0; i < index; i++) {
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+
+    prevNode->next = currNode->next;
+    list->length--;
+    return currNode->value;
+}
+                        </pre>
+                </div> <!--codeContent-->
+                <div class="codeContent">
+                        <pre>
+
+                        </pre>
+                </div> <!-- codeContent -->
+            </div> <!-- code -->
+        </div> <!-- codeContainer -->
+    </div>
+</div>
 </body>
 </html>
