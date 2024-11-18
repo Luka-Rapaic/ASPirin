@@ -121,6 +121,23 @@
     width: 60%;
 }
 
+.section {
+    position: relative;
+    width: 100%;
+    margin: 40px 0 120px 0;
+}
+
+.section>table {
+    font-family: Rajdhani;
+    font-size: 1.5rem;
+    text-align: left;
+    margin: 0 0 30px 0;
+}
+
+.section>table th {
+    padding: 0 10px 0 0;
+}
+
 p {
     /*color: white;*/
     /*text-shadow: 1px 1px white;*/
@@ -131,6 +148,20 @@ p {
     font-size: 1.5rem;
 }
 
+h2 {
+    font-family: Rajdhani;
+    font-weight: bold;
+    font-size: 2rem;
+    /*text-align: center;*/
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-color: #D35269;
+
+    /*width: 100%;*/
+    margin: 30px 0 10px 0;
+    /*padding: 0;*/
+}
+
 .codeContainer {
     position: relative;
     width: 100%;
@@ -138,6 +169,7 @@ p {
     background: #D35269;
     /*background-color: #fc9fe5;*/
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .codeContainer>button {
@@ -157,7 +189,8 @@ p {
 .code {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: fit-content;
+    max-height: 300px;
     border-top: 1px solid white;
     overflow: auto;
 }
@@ -207,7 +240,7 @@ p {
 }
 
 .code.expanded {
-    height: fit-content;
+    max-height: unset;
 }
 
 .codeContent.visible {

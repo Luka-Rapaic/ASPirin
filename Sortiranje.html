@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASPirin</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="Script.js"></script>
+</head>
+<body>
+<div class="navbar" id="navbar">
+    <div class="logo">ASPirin</div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="Lista.html">Lista</a>
+            </li>
+            <li>
+                <a href="Stek.html">Stek</a>
+            </li>
+            <li>
+                <a href="Red.html">Red</a>
+            </li>
+            <li>
+                <a>Binarno stablo</a>
+            </li>
+            <li>
+                <a>M-arno stablo</a>
+            </li>
+            <li>
+                <a>Hesiranje</a>
+            </li>
+            <li>
+                <a href="Sortiranje.html" class="active">Sortiranje</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="header" id="header">
+    <h1>Sortiranje</h1>
+</div>
+
+<div class="window" id="window">
+    <div class="article">
+        <div class="section">
+
+            <h2>Bubble sort</h2>
+
+            <p>Bubble sort prolazi kroz niz i menja pozicije susednih elemenata ukoliko oni nisu sortirani.</p>
+            <p>Ovaj postupak se ponavlja sve dok čitav niz ne bude sortiran, odnosno, izvršavanje se prekida ukoliko u jednom prolazu nije došlo ni do jedne izmene</p>
+
+            <table>
+                <tr>
+                    <th>Vremenska složenost:</th>
+                    <td>n^2</td>
+                </tr>
+                <tr>
+                    <th>Prostorna složenost:</th>
+                    <td>1</td>
+                </tr>
+            </table>
+
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                            <pre>
+void bubble_sort(int *array, int n) {
+    while (1) {
+        int cnt = 0;
+
+        for (int i = 0; i < n-1; i++) {
+            if (array[i] > array[i+1]) {
+                int tmp = array[i];
+                array[i] = array[i+1];
+                array[i+1] = tmp;
+                cnt++;
+            }
+        }
+
+        if (cnt == 0) break;
+    }
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                            <pre>
+
+                            </pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+
+        <div class="section">
+
+            <h2>Shaker sort</h2>
+
+            <p>Shaker sort funkcioniše na sličan način kao bubble sort.</p>
+            <p>Shaker sort i bubble sort razlikuju se po tome što shaker sort naizmenično prolazi kroz niz od početka ka kraju, odnosno od kraja ka početku.</p>
+
+            <table>
+                <tr>
+                    <th>Vremenska složenost:</th>
+                    <td>n^2</td>
+                </tr>
+                <tr>
+                    <th>Prostorna složenost:</th>
+                    <td>1</td>
+                </tr>
+            </table>
+
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                            <pre>
+void shaker_sort(int *array, int n) {
+    int turn = 1;
+    while (1) {
+        int cnt = 0;
+
+        if (turn) {
+            for (int i = 0; i < n-1; i++) {
+                if (array[i] > array[i+1]) {
+                    int tmp = array[i];
+                    array[i] = array[i+1];
+                    array[i+1] = tmp;
+                    cnt++;
+                }
+            }
+            turn = 0;
+        } else {
+            for (int i = n-2; i >= 0; i--) {
+                if (array[i] > array[i+1]) {
+                    int tmp = array[i];
+                    array[i] = array[i+1];
+                    array[i+1] = tmp;
+                    cnt++;
+                }
+            }
+            turn = 1;
+        }
+
+        if (cnt == 0) break;
+    }
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                            <pre>
+
+                            </pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+
+        <div class="section">
+
+            <h2>Selection sort</h2>
+
+            <p>Selection sort pri svakom prolasku bira najmanji element iz nesortiranog dela niza i menja mu poziciju sa prvim nesortiranim elementom.</p>
+            <p>Ovaj postupak se ponavlja n-1 puta, odnosno dok čitav niz ne postane sortiran.</p>
+
+            <table>
+                <tr>
+                    <th>Vremenska složenost:</th>
+                    <td>n^2</td>
+                </tr>
+                <tr>
+                    <th>Prostorna složenost:</th>
+                    <td>1</td>
+                </tr>
+            </table>
+
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                            <pre>
+void selection_sort(int *array, int n) {
+    for (int i = 0; i < n-1; i++) {
+        int minIndex = i;
+        for (int j = i+1; j < n; j++) if (array[j] < array[minIndex]) minIndex = j;
+
+        int tmp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = tmp;
+    }
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                            <pre>
+
+                            </pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+
+        <div class="section">
+
+            <h2>Insertion sort</h2>
+
+            <p>Insertion sort prolazi kroz niz i svaki element stavlja na odgovarajuću poziciju u sortiranom delu niza.</p>
+
+            <table>
+                <tr>
+                    <th>Vremenska složenost:</th>
+                    <td>n^2</td>
+                </tr>
+                <tr>
+                    <th>Prostorna složenost:</th>
+                    <td>1</td>
+                </tr>
+            </table>
+
+            <div class="codeContainer">
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+                <div class="code">
+                    <div class="codeContent visible">
+                            <pre>
+void insertion_sort(int *array, int n) {
+    for (int i = 1; i < n; i++) {
+        int key = array[i];
+        int j = i-1;
+        for (; j >= 0 && array[j] > key; j--) {
+            array[j+1] = array[j];
+        }
+        array[j+1] = key;
+    }
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                            <pre>
+
+                            </pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

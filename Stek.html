@@ -30,7 +30,7 @@
                     <a>Hesiranje</a>
                 </li>
                 <li>
-                    <a>Sortiranje</a>
+                    <a href="Sortiranje.html">Sortiranje</a>
                 </li>
             </ul>
         </div>
@@ -44,6 +44,7 @@
         <div class="article">
             <p>Stek je linearna struktura podataka koja radi po principu <b>FIFO</b> - <b>F</b>irst <b>I</b>n <b>F</b>irst <b>O</b>ut</p>
             <p>Može da se implementira sekvencijalno - pomoću niza - ili ulančano - pomoću ulančane liste.</p>
+            <h2>Implementacija pomoću niza</h2>
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
                 <button onclick="focusCPP(this)">C++</button>
@@ -212,6 +213,156 @@ private:
     int topp;
     T *array;
 };</pre>
+                    </div> <!-- codeContent -->
+                </div> <!-- code -->
+            </div> <!-- codeContainer -->
+            <h2>Implementacija pomoću ulančane liste</h2>
+
+            <p>Kada kreiramo stek implementiran pomoću ulančane liste, nema potrebe da razmišljamo o njegovoj veličini. Ona će biti ograničena količinom slobodne memorije.</p>
+
+            <div class="codeContainer">
+
+                <button class="active" onclick="focusC(this)">C</button>
+                <button onclick="focusCPP(this)">C++</button>
+                <button>Python</button>
+                <button onclick="toggleExpand(this)">Expand</button>
+
+                <div class="code">
+                    <div class="codeContent visible">
+                        <pre>
+#include "stdlib.h"
+#include "stdio.h"
+
+typedef struct Data Data;
+
+typedef struct Node {
+    Data *data;
+    struct Node *next;
+} Node;
+
+typedef struct Stack {
+    Node *head;
+} Stack;
+
+Stack* stack_create() {
+    Stack *newStack = (Stack*) malloc(sizeof(Stack));
+    if (!newStack) {
+        printf("GRESKA: Neuspesna alokacija memorije!");
+        exit(0);
+    }
+
+    newStack->head = NULL;
+    return newStack;
+}
+
+void stack_push(Stack *stack, Data *data) {
+    Node *newNode = (Node*) malloc(sizeof(Node));
+    if (!newNode) {
+        printf("GRESKA: Neuspesna alokacija memorije!");
+        exit(0);
+    }
+
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (!stack->head) stack->head = newNode;
+    else {
+        newNode->next = stack->head;
+        stack->head = newNode;
+    }
+}
+
+Data* stack_peek(Stack *stack) {
+    if (!stack->head) return NULL;
+    return stack->head->data;
+}
+
+Data* stack_pop(Stack *stack) {
+    if (!stack->head) return NULL;
+
+    Node *node = stack->head;
+    stack->head = stack->head->next;
+    Data *data = node->data;
+
+    free(node);
+    return data;
+}
+
+int stack_is_empty(Stack *stack) {
+    return stack->head == NULL;
+}
+
+void stack_free(Stack *stack) {
+    Node *node = stack->head;
+    while (node) {
+        Node *tmp = node;
+        node = node->next;
+        free(tmp);
+    }
+    free(stack);
+}</pre>
+                    </div> <!--codeContent-->
+                    <div class="codeContent">
+                        <pre>
+class Data;
+
+class Stack {
+public:
+    void push(Data*);
+    Data* peek();
+    Data* pop();
+    bool isEmpty();
+
+    ~Stack();
+
+private:
+    struct Node {
+        Data* data;
+        Node* next;
+        Node(Data *data): data(data), next(nullptr) {};
+    };
+
+    Node* head = nullptr;
+};
+
+void Stack::push(Data *data) {
+    Node *newNode = new Node(data);
+
+    if (!head) head = newNode;
+    else {
+        newNode->next = head;
+        head = newNode;
+    }
+}
+
+Data *Stack::peek() {
+    if (!head) return nullptr;
+    return head->data;
+}
+
+Data *Stack::pop() {
+    if (!head) return nullptr;
+
+    Node* node = head;
+    head = head->next;
+
+    Data* data = node->data;
+    delete node;
+    return data;
+}
+
+bool Stack::isEmpty() {
+    return head == nullptr;
+}
+
+Stack::~Stack() {
+    Node *node = head;
+    while (node) {
+        Node *tmp = node;
+        node = node->next;
+        delete tmp;
+    }
+}</pre>
                     </div> <!-- codeContent -->
                 </div> <!-- code -->
             </div> <!-- codeContainer -->
