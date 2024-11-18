@@ -269,3 +269,11 @@ h2 {
     src: url("Fonts/Rajdhani-SemiBold.ttf");
     font-weight: 550;
 }
+
+#BubbleSortCanvas {
+    position: relative;
+    max-width: 100%;
+    aspect-ratio: 100/12;
+    margin: 0 0 20px 0;
+    cursor: pointer;
+}
