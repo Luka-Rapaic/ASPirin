@@ -1,35 +1,4 @@
-class Element {
-    constructor(x, y, width, height, value) {
-        this.x = x;
-        this.y = y;
-        this.w = width;
-        this.h = height;
-        this.value = value;
-    }
-
-    bgColor = "transparent";
-
-    draw(ctx) {
-
-        ctx.fillStyle = this.bgColor;
-        ctx.fillRect(this.x, this.y, this.w, this.h);
-
-        ctx.lineWidth = "4";
-        ctx.fillStyle = "#000000";
-
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, this.w, this.h);
-        ctx.stroke();
-
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.font = "40px Arial";
-
-        ctx.fillText(this.value, this.x + this.w/2, this.y + this.h/2, this.w);
-    }
-}
-
-class BubbleSort {
+class ShakerSort {
     startingState = [2, 5, 4, 1, 10, 25, 3, 7, 8, 18];
     events = [];
     interval = null;
@@ -126,31 +95,32 @@ class BubbleSort {
     }
 
     draw() {
-        bubbleSortCtx.fillStyle = "whitesmoke";
-        bubbleSortCtx.fillRect(0, 0, 1004, 120);
+        shakerSortCtx.fillStyle = "whitesmoke";
+        shakerSortCtx.fillRect(0, 0, 1004, 120);
 
-        for (let element of this.elements) element.draw(bubbleSortCtx);
+        for (let element of this.elements) element.draw(shakerSortCtx);
     }
 }
 
-let bubbleSortCanvas = document.getElementById("BubbleSortCanvas");
-let bubbleSortCtx = bubbleSortCanvas.getContext('2d', {alpha: false});
+let shakerSortCanvas = document.getElementById("ShakerSortCanvas");
+let shakerSortCtx = shakerSortCanvas.getContext('2d', {alpha: false});
 
-let bubbleSort = new BubbleSort();
-bubbleSort.generateEvents();
-bubbleSort.draw();
+let shakerSort = new ShakerSort();
+shakerSort.generateEvents();
+shakerSort.draw();
 
-function playBubbleSortAnimation() {
-    if (bubbleSort.interval !== null) {
-        clearInterval(bubbleSort.interval);
+function playShakerSortAnimation() {
+    if (shakerSort.interval !== null) {
+        clearInterval(shakerSort.interval);
     }
 
-    for (let i = 0; i < bubbleSort.elements.length; i++) {
-        bubbleSort.elements[i].value = bubbleSort.startingState[i];
-        bubbleSort.elements[i].bgColor = 'transparent';
+    for (let i = 0; i < shakerSort.elements.length; i++) {
+        shakerSort.elements[i].value = shakerSort.startingState[i];
+        shakerSort.elements[i].bgColor = 'transparent';
     }
-    bubbleSort.i = 0;
-    bubbleSort.draw();
+    shakerSort.i = 0;
+    shakerSort.draw();
 
-    bubbleSort.interval = setInterval(() => {bubbleSort.update()}, 500);
+    shakerSort.interval = setInterval(() => {shakerSort.update()}, 500);
 }
+
