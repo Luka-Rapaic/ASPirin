@@ -55,25 +55,9 @@ class BubbleSort {
             arr[i] = this.startingState[i];
         }
 
-        let cnt = 0;
         while(true) {
-            cnt = 0;
+            let cnt = 0;
             for (let i = 0; i < arr.length-1; i++) {
-                this.events.push(['compare', i, i+1]);
-                if (arr[i] > arr[i+1]) {
-                    let tmp = arr[i];
-                    arr[i] = arr[i+1];
-                    arr[i+1] = tmp;
-                    cnt++;
-                    this.events.push(['switch', i, i+1]);
-                }
-            }
-            if (cnt === 0) {
-                this.events.push(['complete']);
-                break;
-            }
-            cnt = 0;
-            for (let i = arr.length-2; i >= 0; i--) {
                 this.events.push(['compare', i, i+1]);
                 if (arr[i] > arr[i+1]) {
                     let tmp = arr[i];

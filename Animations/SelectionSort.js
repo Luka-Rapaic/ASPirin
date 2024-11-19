@@ -53,10 +53,8 @@ class SelectionSort {
             this.elements[event[2]].bgColor = 'transparent';
 
         } else if (event[0] === 'updateMin') {
-            this.elements[event[1]].bgColor = '#cccccc';
             this.elements[event[2]].bgColor = '#aaaaaa';
             this.draw();
-            this.elements[event[1]].bgColor = 'transparent';
             this.elements[event[2]].bgColor = 'transparent';
 
         } else if (event[0] === 'switch') {
@@ -64,10 +62,10 @@ class SelectionSort {
             this.elements[event[1]].value = this.elements[event[2]].value;
             this.elements[event[2]].value = tmp;
 
-            this.elements[event[1]].bgColor = '#aaaaaa';
+            // this.elements[event[1]].bgColor = '#aaaaaa';
             this.elements[event[2]].bgColor = '#D8F793';
             this.draw();
-            this.elements[event[1]].bgColor = 'transparent';
+            // this.elements[event[1]].bgColor = 'transparent';
             this.elements[event[2]].bgColor = 'transparent';
 
         } else if (event[0] === 'sorted') {
