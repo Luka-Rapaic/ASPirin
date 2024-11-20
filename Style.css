@@ -277,3 +277,7 @@ canvas {
     margin: 0 0 20px 0;
     cursor: pointer;
 }
+
+#InsertionSortCanvas {
+    aspect-ratio: 100/23;
+}
