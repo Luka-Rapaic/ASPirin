@@ -8,7 +8,7 @@ class Element {
     }
 
     bgColor = "transparent";
-    font = "40px Arial";
+    font = "4px Arial";
 
     draw(ctx) {
 
