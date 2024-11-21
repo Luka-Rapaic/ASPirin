@@ -333,6 +333,12 @@ void merge_sort(int *array, int low, int high) {
 
             <h2>Counting sort</h2>
 
+            <p>Counting sort koristi pomoćni niz veličine opsega vrednosti niza koji se sortira.</p>
+            <p>Tokom prolaska kroz niz, pri nailasku na svaki element counting sort inkrementira odgovarajući ulaz pomoćnog niza,
+                odnosno ulaz koji odgovara razlici između tekućeg i najmanjeg elementa niza za sortiranje.</p>
+            <p>Zatim se prolazi kroz pomoćni niz gde se pri nailasku na svaki element niza u sortirani niz dodaje
+                element broj vrednosti zbira najmanjeg elementa niza za sortiranje i ulaza tekućeg elementa pomoćnog niza.</p>
+
             <table>
                 <tr>
                     <th>Vremenska složenost:</th>
@@ -341,6 +347,9 @@ void merge_sort(int *array, int low, int high) {
                 <tr>
                     <th>Prostorna složenost:</th>
                     <td>m</td>
+                </tr>
+                <tr>
+                    <td colspan="2">*Gde je m veličina opsega vrednosti u nizu</td>
                 </tr>
             </table>
 

@@ -80,8 +80,8 @@ class CountingSort {
 
     fadeIn(n) {
         this.tmp = [];
-        let size = 1000/n;
-        let font = `${50 * size/100}px Arial`
+        let size = 1000/n > 100 ? 100 : 1000/n;
+        let font = `${50 * size/100 > 40 ? 40 : 50 * size/100}px Arial`
 
         for (let i = 0; i < n; i++) {
             this.tmp.push(new Element(2 + i*size, 222, size, size, 0));
@@ -191,7 +191,7 @@ function playCountingSortAnimation() {
         clearInterval(countingSort.tmpInterval);
         countingSort.tmpInterval = null;
     }
-    
+
     for (let i = 0; i < countingSort.startingState.length; i++) {
         countingSort.elements[i].value = countingSort.startingState[i];
         countingSort.elements[i].bgColor = 'transparent';
