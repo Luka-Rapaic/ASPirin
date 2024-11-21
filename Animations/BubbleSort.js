@@ -8,6 +8,7 @@ class Element {
     }
 
     bgColor = "transparent";
+    font = "40px Arial";
 
     draw(ctx) {
 
@@ -23,7 +24,7 @@ class Element {
 
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.font = "40px Arial";
+        ctx.font = this.font;
 
         ctx.fillText(this.value, this.x + this.w/2, this.y + this.h/2, this.w);
     }
