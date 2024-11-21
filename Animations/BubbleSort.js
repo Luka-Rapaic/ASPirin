@@ -36,16 +36,16 @@ class BubbleSort {
     i = 0;
 
     elements = [
-        new Element(2, 10, 100, 100, 2),
-        new Element(102, 10, 100, 100, 5),
-        new Element(202, 10, 100, 100, 4),
-        new Element(302, 10, 100, 100, 1),
-        new Element(402, 10, 100, 100, 10),
-        new Element(502, 10, 100, 100, 25),
-        new Element(602, 10, 100, 100, 3),
-        new Element(702, 10, 100, 100, 7),
-        new Element(802, 10, 100, 100, 8),
-        new Element(902, 10, 100, 100, 18)
+        new Element(2, 2, 100, 100, 2),
+        new Element(102, 2, 100, 100, 5),
+        new Element(202, 2, 100, 100, 4),
+        new Element(302, 2, 100, 100, 1),
+        new Element(402, 2, 100, 100, 10),
+        new Element(502, 2, 100, 100, 25),
+        new Element(602, 2, 100, 100, 3),
+        new Element(702, 2, 100, 100, 7),
+        new Element(802, 2, 100, 100, 8),
+        new Element(902, 2, 100, 100, 18)
     ]
 
     generateEvents() {
@@ -111,7 +111,7 @@ class BubbleSort {
 
     draw() {
         bubbleSortCtx.fillStyle = "whitesmoke";
-        bubbleSortCtx.fillRect(0, 0, 1004, 120);
+        bubbleSortCtx.fillRect(0, 0, 1004, 104);
 
         for (let element of this.elements) element.draw(bubbleSortCtx);
     }

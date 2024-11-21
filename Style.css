@@ -273,11 +273,15 @@ h2 {
 canvas {
     position: relative;
     max-width: 100%;
-    aspect-ratio: 100/12;
+    aspect-ratio: 1004/104;
     margin: 0 0 20px 0;
     cursor: pointer;
 }
 
 #InsertionSortCanvas {
-    aspect-ratio: 100/23;
+    aspect-ratio: 1004/214;
+}
+
+#MergeSortCanvas {
+    aspect-ratio: 1054/214;
 }

@@ -60,7 +60,7 @@
                 </tr>
             </table>
 
-            <canvas id="BubbleSortCanvas" width="1004" height="120" onclick="playBubbleSortAnimation()"></canvas>
+            <canvas id="BubbleSortCanvas" width="1004" height="104" onclick="playBubbleSortAnimation()"></canvas>
 
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
@@ -114,7 +114,7 @@ void bubble_sort(int *array, int n) {
                 </tr>
             </table>
 
-            <canvas id="ShakerSortCanvas" width="1004" height="120" onclick="playShakerSortAnimation()"></canvas>
+            <canvas id="ShakerSortCanvas" width="1004" height="104" onclick="playShakerSortAnimation()"></canvas>
 
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
@@ -182,7 +182,7 @@ void shaker_sort(int *array, int n) {
                 </tr>
             </table>
 
-            <canvas id="SelectionSortCanvas" width="1004" height="120" onclick="playSelectionSortAnimation()"></canvas>
+            <canvas id="SelectionSortCanvas" width="1004" height="104" onclick="playSelectionSortAnimation()"></canvas>
 
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
@@ -229,7 +229,7 @@ void selection_sort(int *array, int n) {
                 </tr>
             </table>
 
-            <canvas id="InsertionSortCanvas" width="1004" height="230" onclick="playInsertionSortAnimation()"></canvas>
+            <canvas id="InsertionSortCanvas" width="1004" height="214" onclick="playInsertionSortAnimation()"></canvas>
 
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
@@ -280,6 +280,8 @@ void insertion_sort(int *array, int n) {
                 </tr>
             </table>
 
+            <canvas id="MergeSortCanvas" width="1054" height="214" onclick="playMergeSortAnimation()"></canvas>
+
             <div class="codeContainer">
                 <button class="active" onclick="focusC(this)">C</button>
                 <button onclick="focusCPP(this)">C++</button>
@@ -329,5 +331,6 @@ void merge_sort(int *array, int low, int high) {
 <script src="Animations/ShakerSort.js"></script>
 <script src="Animations/SelectionSort.js"></script>
 <script src="Animations/InsertionSort.js"></script>
+<script src="Animations/MergeSort.js"></script>
 </body>
 </html>

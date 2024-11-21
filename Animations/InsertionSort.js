@@ -5,19 +5,19 @@ class InsertionSort {
     i = 0;
 
     elements = [
-        new Element(2, 120, 100, 100, 2),
-        new Element(102, 120, 100, 100, 5),
-        new Element(202, 120, 100, 100, 4),
-        new Element(302, 120, 100, 100, 1),
-        new Element(402, 120, 100, 100, 10),
-        new Element(502, 120, 100, 100, 25),
-        new Element(602, 120, 100, 100, 3),
-        new Element(702, 120, 100, 100, 7),
-        new Element(802, 120, 100, 100, 8),
-        new Element(902, 120, 100, 100, 18)
+        new Element(2, 112, 100, 100, 2),
+        new Element(102, 112, 100, 100, 5),
+        new Element(202, 112, 100, 100, 4),
+        new Element(302, 112, 100, 100, 1),
+        new Element(402, 112, 100, 100, 10),
+        new Element(502, 112, 100, 100, 25),
+        new Element(602, 112, 100, 100, 3),
+        new Element(702, 112, 100, 100, 7),
+        new Element(802, 112, 100, 100, 8),
+        new Element(902, 112, 100, 100, 18)
     ]
 
-    key = new Element(2, 10, 100, 100, '');
+    key = new Element(2, 2, 100, 100, '');
 
     generateEvents() {
         this.events = [];
@@ -89,7 +89,7 @@ class InsertionSort {
 
     draw() {
         insertionSortCtx.fillStyle = "whitesmoke";
-        insertionSortCtx.fillRect(0, 0, 1004, 230);
+        insertionSortCtx.fillRect(0, 0, 1004, 218);
 
         this.key.draw(insertionSortCtx);
         for (let element of this.elements) element.draw(insertionSortCtx);
